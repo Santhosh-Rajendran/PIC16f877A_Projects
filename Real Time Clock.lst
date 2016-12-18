@@ -1,0 +1,1498 @@
+
+
+HI-TECH Software PIC LITE Macro Assembler V9.83 build 10920 
+                                                                                               Sun Dec 18 08:52:34 2016
+
+HI-TECH Software Omniscient Code Generator (Lite mode) build 10920
+     1  0000                     opt subtitle "HI-TECH Software Omniscient Code Generator (Lite mode) build 10920"
+     2                           
+     3                           opt pagewidth 120
+     4                           
+     5                           	opt lm
+     6                           
+     7                           	processor	16F877A
+     8                           clrc	macro
+     9                           	bcf	3,0
+    10  0000                     	endm
+    11                           clrz	macro
+    12                           	bcf	3,2
+    13  0000                     	endm
+    14                           setc	macro
+    15                           	bsf	3,0
+    16  0000                     	endm
+    17                           setz	macro
+    18                           	bsf	3,2
+    19  0000                     	endm
+    20                           skipc	macro
+    21                           	btfss	3,0
+    22  0000                     	endm
+    23                           skipz	macro
+    24                           	btfss	3,2
+    25  0000                     	endm
+    26                           skipnc	macro
+    27                           	btfsc	3,0
+    28  0000                     	endm
+    29                           skipnz	macro
+    30                           	btfsc	3,2
+    31  0000                     	endm
+    32  0000                     indf	equ	0
+    33  0000                     indf0	equ	0
+    34  0002                     pc	equ	2
+    35  0002                     pcl	equ	2
+    36  0003                     status	equ	3
+    37  0004                     fsr	equ	4
+    38  0004                     fsr0	equ	4
+    39  0001                     c	equ	1
+    40  0000                     z	equ	0
+    41  000A                     pclath	equ	10
+    42                           	FNCALL	_main,_Initializations
+    43                           	FNCALL	_main,_dispdata
+    44                           	FNCALL	_main,_UpdateData
+    45                           	FNROOT	_main
+    46                           	FNCALL	intlevel1,_ISR
+    47                           	global	intlevel1
+    48                           	FNROOT	intlevel1
+    49                           	global	_arr
+    50                           psect	strings,class=STRING,delta=2
+    51                           global __pstrings
+    52  0164                     __pstrings:
+    53                           ;	global	stringdir,stringtab,__stringbase
+    54  0164                     stringtab:
+    55                           ;	String table - string pointers are 1 byte each
+    56  0164                     stringcode:stringdir:
+      + 0164                     stringdir:	
+    57  0164  3001               movlw high(stringdir)
+    58  0165  008A               movwf pclath
+    59  0166  0804               movf fsr,w
+    60  0167  0A84               incf fsr
+    61  0168  0782               	addwf pc
+    62  0169                     __stringbase:
+    63  0169  3400               	retlw	0
+    64                           psect	strings
+    65                           	file	"D:\embedded projects\PIC_PROJECTS\Real Time Clock\Real Time Clock.c"
+    66                           	line	20
+    67  016A                     _arr:
+    68  016A  343F               	retlw	03Fh
+    69  016B  3406               	retlw	06h
+    70  016C  345B               	retlw	05Bh
+    71  016D  344F               	retlw	04Fh
+    72  016E  3466               	retlw	066h
+    73  016F  346D               	retlw	06Dh
+    74  0170  347D               	retlw	07Dh
+    75  0171  3407               	retlw	07h
+    76  0172  347F               	retlw	07Fh
+    77  0173  3467               	retlw	067h
+    78                           	global	_arr
+    79                           	global	_data2segdisp
+    80                           	global	_option_select_time
+    81                           	global	_display_toggle
+    82                           	global	_exit_modification_time
+    83                           	global	_option
+    84                           	global	_switch_press_time
+    85                           	global	_timecounter
+    86                           	global	_ACCESSDISP
+    87                           	global	_LCD_BLINK
+    88                           	global	_MODIFYDATA
+    89                           	global	_UPDATEDATA
+    90                           	global	_second
+    91                           	global	_CCP1CON
+    92  0017                     _CCP1CON	set	23
+    93                           	global	_CCPR1H
+    94  0016                     _CCPR1H	set	22
+    95                           	global	_CCPR1L
+    96  0015                     _CCPR1L	set	21
+    97                           	global	_PORTB
+    98  0006                     _PORTB	set	6
+    99                           	global	_PORTD
+   100  0008                     _PORTD	set	8
+   101                           	global	_T1CON
+   102  0010                     _T1CON	set	16
+   103                           	global	_TMR1H
+   104  000F                     _TMR1H	set	15
+   105                           	global	_TMR1L
+   106  000E                     _TMR1L	set	14
+   107                           	global	_CARRY
+   108  0018                     _CARRY	set	24
+   109                           	global	_CCP1IF
+   110  0062                     _CCP1IF	set	98
+   111                           	global	_GIE
+   112  005F                     _GIE	set	95
+   113                           	global	_PEIE
+   114  005E                     _PEIE	set	94
+   115                           	global	_RB4
+   116  0034                     _RB4	set	52
+   117                           	global	_RC0
+   118  0038                     _RC0	set	56
+   119                           	global	_RE0
+   120  0048                     _RE0	set	72
+   121                           	global	_TMR1ON
+   122  0080                     _TMR1ON	set	128
+   123                           	global	_TRISB
+   124  0086                     _TRISB	set	134
+   125                           	global	_TRISD
+   126  0088                     _TRISD	set	136
+   127                           	global	_CCP1IE
+   128  0462                     _CCP1IE	set	1122
+   129                           	global	_TRISC0
+   130  0438                     _TRISC0	set	1080
+   131                           	global	_TRISE0
+   132  0448                     _TRISE0	set	1096
+   133                           	global	_EEADR
+   134  010D                     _EEADR	set	269
+   135                           	global	_EEDATA
+   136  010C                     _EEDATA	set	268
+   137                           	global	_EECON1
+   138  018C                     _EECON1	set	396
+   139                           	global	_EECON2
+   140  018D                     _EECON2	set	397
+   141                           	global	_RD
+   142  0C60                     _RD	set	3168
+   143                           	global	_WR
+   144  0C61                     _WR	set	3169
+   145                           	global	_WREN
+   146  0C62                     _WREN	set	3170
+   147                           	file	"Real Time Clock.as"
+   148                           	line	#
+   149                           psect cinit,class=CODE,delta=2
+   150                           global start_initialization
+   151  0153                     start_initialization:
+   152                           
+   153                           psect	bitbssCOMMON,class=COMMON,bit,space=1
+   154                           global __pbitbssCOMMON
+   155  03D0                     __pbitbssCOMMON:
+   156  03D0                     _ACCESSDISP:
+   157  03D0                            ds      1
+   158                           
+   159  03D1                     _LCD_BLINK:
+   160  03D1                            ds      1
+   161                           
+   162  03D2                     _MODIFYDATA:
+   163  03D2                            ds      1
+   164                           
+   165  03D3                     _UPDATEDATA:
+   166  03D3                            ds      1
+   167                           
+   168                           psect	bssCOMMON,class=COMMON,space=1
+   169                           global __pbssCOMMON
+   170  0070                     __pbssCOMMON:
+   171  0070                     _display_toggle:
+   172  0070                            ds      1
+   173                           
+   174  0071                     _exit_modification_time:
+   175  0071                            ds      1
+   176                           
+   177  0072                     _option:
+   178  0072                            ds      1
+   179                           
+   180  0073                     _switch_press_time:
+   181  0073                            ds      1
+   182                           
+   183  0074                     _timecounter:
+   184  0074                            ds      1
+   185                           
+   186                           psect	bssBANK0,class=BANK0,space=1
+   187                           global __pbssBANK0
+   188  0020                     __pbssBANK0:
+   189  0020                     _data2segdisp:
+   190  0020                            ds      4
+   191                           
+   192  0024                     _option_select_time:
+   193  0024                            ds      1
+   194                           
+   195  0025                     _second:
+   196  0025                            ds      2
+   197                           
+   198                           ; Clear objects allocated to BITCOMMON
+   199                           psect cinit,class=CODE,delta=2
+   200  0153  01FA               	clrf	((__pbitbssCOMMON/8)+0)&07Fh
+   201                           ; Clear objects allocated to COMMON
+   202                           psect cinit,class=CODE,delta=2
+   203  0154  01F0               	clrf	((__pbssCOMMON)+0)&07Fh
+   204  0155  01F1               	clrf	((__pbssCOMMON)+1)&07Fh
+   205  0156  01F2               	clrf	((__pbssCOMMON)+2)&07Fh
+   206  0157  01F3               	clrf	((__pbssCOMMON)+3)&07Fh
+   207  0158  01F4               	clrf	((__pbssCOMMON)+4)&07Fh
+   208                           ; Clear objects allocated to BANK0
+   209                           psect cinit,class=CODE,delta=2
+   210  0159  01A0               	clrf	((__pbssBANK0)+0)&07Fh
+   211  015A  01A1               	clrf	((__pbssBANK0)+1)&07Fh
+   212  015B  01A2               	clrf	((__pbssBANK0)+2)&07Fh
+   213  015C  01A3               	clrf	((__pbssBANK0)+3)&07Fh
+   214  015D  01A4               	clrf	((__pbssBANK0)+4)&07Fh
+   215  015E  01A5               	clrf	((__pbssBANK0)+5)&07Fh
+   216  015F  01A6               	clrf	((__pbssBANK0)+6)&07Fh
+   217                           psect cinit,class=CODE,delta=2
+   218                           global end_of_initialization
+   219                           
+   220                           ;End of C runtime variable initialization code
+   221                           
+   222  0160                     end_of_initialization:
+   223  0160  0183               clrf status
+   224  0161  120A  118A  2911   ljmp _main	;jump to C main() function
+   225                           psect	cstackCOMMON,class=COMMON,space=1
+   226                           global __pcstackCOMMON
+   227  0075                     __pcstackCOMMON:
+   228                           	global	?_dispdata
+   229  0075                     ?_dispdata:	; 0 bytes @ 0x0
+   230                           	global	?_UpdateData
+   231  0075                     ?_UpdateData:	; 0 bytes @ 0x0
+   232                           	global	??_ISR
+   233  0075                     ??_ISR:	; 0 bytes @ 0x0
+   234                           	global	?_Initializations
+   235  0075                     ?_Initializations:	; 0 bytes @ 0x0
+   236                           	global	?_main
+   237  0075                     ?_main:	; 0 bytes @ 0x0
+   238                           	global	?_ISR
+   239  0075                     ?_ISR:	; 2 bytes @ 0x0
+   240  0075                     	ds	5
+   241                           psect	cstackBANK0,class=BANK0,space=1
+   242                           global __pcstackBANK0
+   243  0027                     __pcstackBANK0:
+   244                           	global	??_dispdata
+   245  0027                     ??_dispdata:	; 0 bytes @ 0x0
+   246                           	global	??_UpdateData
+   247  0027                     ??_UpdateData:	; 0 bytes @ 0x0
+   248                           	global	??_Initializations
+   249  0027                     ??_Initializations:	; 0 bytes @ 0x0
+   250  0027                     	ds	1
+   251                           	global	dispdata@i
+   252  0028                     dispdata@i:	; 1 bytes @ 0x1
+   253                           	global	UpdateData@rec_data
+   254  0028                     UpdateData@rec_data:	; 1 bytes @ 0x1
+   255  0028                     	ds	1
+   256                           	global	UpdateData@i
+   257  0029                     UpdateData@i:	; 1 bytes @ 0x2
+   258  0029                     	ds	1
+   259                           	global	??_main
+   260  002A                     ??_main:	; 0 bytes @ 0x3
+   261 ;;Data sizes: Strings 0, constant 10, data 0, bss 12, persistent 0 stack 0
+   262 ;;Auto spaces:   Size  Autos    Used
+   263 ;; COMMON          14      5      11
+   264 ;; BANK0           80      3      10
+   265 ;; BANK1           80      0       0
+   266 ;; BANK3           96      0       0
+   267 ;; BANK2           96      0       0
+   268                           
+   269 ;;
+   270 ;; Pointer list with targets:
+   271                           
+   272 ;; UpdateData@rec_data	PTR unsigned int  size(1) Largest target is 2
+   273 ;;		 -> second(BANK0[2]), 
+   274 ;;
+   275                           
+   276                           
+   277 ;;
+   278 ;; Critical Paths under _main in COMMON
+   279 ;;
+   280 ;;   None.
+   281 ;;
+   282 ;; Critical Paths under _ISR in COMMON
+   283 ;;
+   284 ;;   None.
+   285 ;;
+   286 ;; Critical Paths under _main in BANK0
+   287 ;;
+   288 ;;   _main->_UpdateData
+   289 ;;
+   290 ;; Critical Paths under _ISR in BANK0
+   291 ;;
+   292 ;;   None.
+   293 ;;
+   294 ;; Critical Paths under _main in BANK1
+   295 ;;
+   296 ;;   None.
+   297 ;;
+   298 ;; Critical Paths under _ISR in BANK1
+   299 ;;
+   300 ;;   None.
+   301 ;;
+   302 ;; Critical Paths under _main in BANK3
+   303 ;;
+   304 ;;   None.
+   305 ;;
+   306 ;; Critical Paths under _ISR in BANK3
+   307 ;;
+   308 ;;   None.
+   309 ;;
+   310 ;; Critical Paths under _main in BANK2
+   311 ;;
+   312 ;;   None.
+   313 ;;
+   314 ;; Critical Paths under _ISR in BANK2
+   315 ;;
+   316 ;;   None.
+   317                           
+   318 ;;
+   319 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   320 ;;
+   321                           
+   322 ;;
+   323 ;;Call Graph Tables:
+   324 ;;
+   325 ;; ---------------------------------------------------------------------------------
+   326 ;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   327 ;; ---------------------------------------------------------------------------------
+   328 ;; (0) _main                                                 0     0      0     399
+   329 ;;                    _Initializations
+   330 ;;                           _dispdata
+   331 ;;                         _UpdateData
+   332 ;; ---------------------------------------------------------------------------------
+   333 ;; (1) _dispdata                                             2     2      0     263
+   334 ;;                                              0 BANK0      2     2      0
+   335 ;; ---------------------------------------------------------------------------------
+   336 ;; (2) _UpdateData                                           3     3      0     136
+   337 ;;                                              0 BANK0      3     3      0
+   338 ;; ---------------------------------------------------------------------------------
+   339 ;; (1) _Initializations                                      0     0      0       0
+   340 ;; ---------------------------------------------------------------------------------
+   341 ;; Estimated maximum stack depth 2
+   342 ;; ---------------------------------------------------------------------------------
+   343 ;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   344 ;; ---------------------------------------------------------------------------------
+   345 ;; (3) _ISR                                                  5     5      0       0
+   346 ;;                                              0 COMMON     5     5      0
+   347 ;; ---------------------------------------------------------------------------------
+   348 ;; Estimated maximum stack depth 3
+   349 ;; ---------------------------------------------------------------------------------
+   350                           
+   351 ;; Call Graph Graphs:
+   352                           
+   353 ;; _main (ROOT)
+   354 ;;   _Initializations
+   355 ;;   _dispdata
+   356 ;;   _UpdateData
+   357 ;;
+   358 ;; _ISR (ROOT)
+   359 ;;
+   360                           
+   361 ;; Address spaces:
+   362                           
+   363 ;;Name               Size   Autos  Total    Cost      Usage
+   364 ;;BITCOMMON            E      0       1       0        7.1%
+   365 ;;EEDATA             100      0       0       0        0.0%
+   366 ;;NULL                 0      0       0       0        0.0%
+   367 ;;CODE                 0      0       0       0        0.0%
+   368 ;;COMMON               E      5       B       1       78.6%
+   369 ;;BITSFR0              0      0       0       1        0.0%
+   370 ;;SFR0                 0      0       0       1        0.0%
+   371 ;;BITSFR1              0      0       0       2        0.0%
+   372 ;;SFR1                 0      0       0       2        0.0%
+   373 ;;STACK                0      0       2       2        0.0%
+   374 ;;ABS                  0      0      15       3        0.0%
+   375 ;;BITBANK0            50      0       0       4        0.0%
+   376 ;;BITSFR3              0      0       0       4        0.0%
+   377 ;;SFR3                 0      0       0       4        0.0%
+   378 ;;BANK0               50      3       A       5       12.5%
+   379 ;;BITSFR2              0      0       0       5        0.0%
+   380 ;;SFR2                 0      0       0       5        0.0%
+   381 ;;BITBANK1            50      0       0       6        0.0%
+   382 ;;BANK1               50      0       0       7        0.0%
+   383 ;;BITBANK3            60      0       0       8        0.0%
+   384 ;;BANK3               60      0       0       9        0.0%
+   385 ;;BITBANK2            60      0       0      10        0.0%
+   386 ;;BANK2               60      0       0      11        0.0%
+   387 ;;DATA                 0      0      17      12        0.0%
+   388                           
+   389                           	global	_main
+   390                           psect	maintext,global,class=CODE,delta=2
+   391                           global __pmaintext
+   392  0111                     __pmaintext:
+   393                           
+   394 ;; *************** function _main *****************
+   395 ;; Defined at:
+   396 ;;		line 113 in file "D:\embedded projects\PIC_PROJECTS\Real Time Clock\Real Time Clock.c"
+   397 ;; Parameters:    Size  Location     Type
+   398 ;;		None
+   399 ;; Auto vars:     Size  Location     Type
+   400 ;;		None
+   401 ;; Return value:  Size  Location     Type
+   402 ;;		None               void
+   403 ;; Registers used:
+   404 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+   405 ;; Tracked objects:
+   406 ;;		On entry : 17F/0
+   407 ;;		On exit  : 0/0
+   408 ;;		Unchanged: 0/0
+   409 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   410 ;;      Params:         0       0       0       0       0
+   411 ;;      Locals:         0       0       0       0       0
+   412 ;;      Temps:          0       0       0       0       0
+   413 ;;      Totals:         0       0       0       0       0
+   414 ;;Total ram usage:        0 bytes
+   415 ;; Hardware stack levels required when called:    3
+   416 ;; This function calls:
+   417 ;;		_Initializations
+   418 ;;		_dispdata
+   419 ;;		_UpdateData
+   420 ;; This function is called by:
+   421 ;;		Startup code after reset
+   422 ;; This function uses a non-reentrant model
+   423 ;;
+   424                           psect	maintext
+   425                           	file	"D:\embedded projects\PIC_PROJECTS\Real Time Clock\Real Time Clock.c"
+   426                           	line	113
+   427                           	global	__size_of_main
+   428  0025                     	__size_of_main	equ	__end_of_main-_main
+   429                           	
+   430  0111                     _main:	
+   431                           	opt	stack 5
+   432                           ; Regs used in _main: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+   433                           	line	115
+   434                           	
+   435  0111                     l3045:	
+   436                           ;Real Time Clock.c: 115: Initializations();
+   437  0111  120A  118A  2136   	fcall	_Initializations
+              120A  118A         
+   438                           	line	117
+   439                           	
+   440  0116                     l3047:	
+   441                           ;Real Time Clock.c: 117: GIE = 1; PEIE = 1;
+   442  0116  178B               	bsf	(95/8),(95)&7
+   443                           	
+   444  0117                     l3049:	
+   445  0117  170B               	bsf	(94/8),(94)&7
+   446  0118  2919               	goto	l3051
+   447                           	line	121
+   448                           ;Real Time Clock.c: 120: for(;;)
+   449                           	
+   450  0119                     l731:	
+   451                           	line	122
+   452                           	
+   453  0119                     l3051:	
+   454                           ;Real Time Clock.c: 121: {
+   455                           ;Real Time Clock.c: 122: TMR1ON = 1;
+   456  0119  1283               	bcf	status, 5	;RP0=0, select bank0
+   457  011A  1303               	bcf	status, 6	;RP1=0, select bank0
+   458  011B  1410               	bsf	(128/8),(128)&7
+   459                           	line	124
+   460                           	
+   461  011C                     l3053:	
+   462                           ;Real Time Clock.c: 124: if(0 != ACCESSDISP)
+   463  011C  1C7A               	btfss	(_ACCESSDISP/8),(_ACCESSDISP)&7
+   464  011D  291F               	goto	u2771
+   465  011E  2920               	goto	u2770
+   466  011F                     u2771:
+   467  011F  2926               	goto	l733
+   468  0120                     u2770:
+   469                           	line	125
+   470                           	
+   471  0120                     l3055:	
+   472                           ;Real Time Clock.c: 125: dispdata();
+   473  0120  120A  118A  2015   	fcall	_dispdata
+              120A  118A         
+   474  0125  2926               	goto	l733
+   475                           	line	126
+   476                           	
+   477  0126                     l732:	
+   478                           	line	127
+   479                           ;Real Time Clock.c: 126: else
+   480                           ;Real Time Clock.c: 127: ;
+   481                           	
+   482  0126                     l733:	
+   483                           	line	129
+   484                           ;Real Time Clock.c: 129: if(0 != UPDATEDATA)
+   485  0126  1DFA               	btfss	(_UPDATEDATA/8),(_UPDATEDATA)&7
+   486  0127  2929               	goto	u2781
+   487  0128  292A               	goto	u2780
+   488  0129                     u2781:
+   489  0129  2919               	goto	l3051
+   490  012A                     u2780:
+   491                           	line	130
+   492                           	
+   493  012A                     l3057:	
+   494                           ;Real Time Clock.c: 130: UpdateData(&second);
+   495  012A  3025               	movlw	(_second)&0ffh
+   496  012B  120A  118A  20E2   	fcall	_UpdateData
+              120A  118A         
+   497  0130  2919               	goto	l3051
+   498                           	line	131
+   499                           	
+   500  0131                     l734:	
+   501  0131  2919               	goto	l3051
+   502                           	line	132
+   503                           ;Real Time Clock.c: 131: else
+   504                           ;Real Time Clock.c: 132: ;
+   505                           	
+   506  0132                     l735:	
+   507                           	line	133
+   508                           ;Real Time Clock.c: 133: }
+   509  0132  2919               	goto	l3051
+   510                           	
+   511  0133                     l736:	
+   512                           	line	135
+   513                           	
+   514  0133                     l737:	
+   515                           	global	start
+   516  0133  120A  118A  2812   	ljmp	start
+   517                           	opt stack 0
+   518                           GLOBAL	__end_of_main
+   519  0136                     	__end_of_main:
+   520 ;; =============== function _main ends ============
+   521                           
+   522                           	signat	_main,88
+   523                           	global	_dispdata
+   524                           psect	text220,local,class=CODE,delta=2
+   525                           global __ptext220
+   526  0015                     __ptext220:
+   527                           
+   528 ;; *************** function _dispdata *****************
+   529 ;; Defined at:
+   530 ;;		line 138 in file "D:\embedded projects\PIC_PROJECTS\Real Time Clock\Real Time Clock.c"
+   531 ;; Parameters:    Size  Location     Type
+   532 ;;		None
+   533 ;; Auto vars:     Size  Location     Type
+   534 ;;  i               1    1[BANK0 ] unsigned char 
+   535 ;; Return value:  Size  Location     Type
+   536 ;;		None               void
+   537 ;; Registers used:
+   538 ;;		wreg, fsr0l, fsr0h, status,2, status,0
+   539 ;; Tracked objects:
+   540 ;;		On entry : 0/0
+   541 ;;		On exit  : 0/0
+   542 ;;		Unchanged: 0/0
+   543 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   544 ;;      Params:         0       0       0       0       0
+   545 ;;      Locals:         0       1       0       0       0
+   546 ;;      Temps:          0       1       0       0       0
+   547 ;;      Totals:         0       2       0       0       0
+   548 ;;Total ram usage:        2 bytes
+   549 ;; Hardware stack levels used:    1
+   550 ;; Hardware stack levels required when called:    1
+   551 ;; This function calls:
+   552 ;;		Nothing
+   553 ;; This function is called by:
+   554 ;;		_main
+   555 ;; This function uses a non-reentrant model
+   556 ;;
+   557                           psect	text220
+   558                           	file	"D:\embedded projects\PIC_PROJECTS\Real Time Clock\Real Time Clock.c"
+   559                           	line	138
+   560                           	global	__size_of_dispdata
+   561  007A                     	__size_of_dispdata	equ	__end_of_dispdata-_dispdata
+   562                           	
+   563  0015                     _dispdata:	
+   564                           	opt	stack 6
+   565                           ; Regs used in _dispdata: [wreg-fsr0h+status,2+status,0]
+   566                           	line	140
+   567                           	
+   568  0015                     l2981:	
+   569                           ;Real Time Clock.c: 140: ACCESSDISP = 0;
+   570  0015  107A               	bcf	(_ACCESSDISP/8),(_ACCESSDISP)&7
+   571                           	line	141
+   572                           ;Real Time Clock.c: 141: U1 i = 0;
+   573  0016  1283               	bcf	status, 5	;RP0=0, select bank0
+   574  0017  1303               	bcf	status, 6	;RP1=0, select bank0
+   575  0018  01A8               	clrf	(dispdata@i)
+   576                           	line	145
+   577                           	
+   578  0019                     l2983:	
+   579                           ;Real Time Clock.c: 145: if(display_toggle <= 20)
+   580  0019  3015               	movlw	(015h)
+   581  001A  0270               	subwf	(_display_toggle),w
+   582  001B  1803               	skipnc
+   583  001C  281E               	goto	u2681
+   584  001D  281F               	goto	u2680
+   585  001E                     u2681:
+   586  001E  284F               	goto	l3015
+   587  001F                     u2680:
+   588                           	line	148
+   589                           	
+   590  001F                     l2985:	
+   591                           ;Real Time Clock.c: 146: {
+   592                           ;Real Time Clock.c: 148: for(i = 0 ; i < 4 ; i++)
+   593  001F  01A8               	clrf	(dispdata@i)
+   594                           	
+   595  0020                     l2987:	
+   596  0020  3004               	movlw	(04h)
+   597  0021  0228               	subwf	(dispdata@i),w
+   598  0022  1C03               	skipc
+   599  0023  2825               	goto	u2691
+   600  0024  2826               	goto	u2690
+   601  0025                     u2691:
+   602  0025  2828               	goto	l2991
+   603  0026                     u2690:
+   604  0026  288E               	goto	l747
+   605                           	
+   606  0027                     l2989:	
+   607  0027  288E               	goto	l747
+   608                           	line	149
+   609                           	
+   610  0028                     l741:	
+   611                           	line	150
+   612                           	
+   613  0028                     l2991:	
+   614                           ;Real Time Clock.c: 149: {
+   615                           ;Real Time Clock.c: 150: PORTB = 1 << i;
+   616  0028  3001               	movlw	(01h)
+   617  0029  00A7               	movwf	(??_dispdata+0)+0
+   618  002A  0A28               	incf	(dispdata@i),w
+   619  002B  282E               	goto	u2704
+   620  002C                     u2705:
+   621  002C  1003               	clrc
+   622  002D  0DA7               	rlf	(??_dispdata+0)+0,f
+   623  002E                     u2704:
+   624  002E  3EFF               	addlw	-1
+   625  002F  1D03               	skipz
+   626  0030  282C               	goto	u2705
+   627  0031  0827               	movf	0+(??_dispdata+0)+0,w
+   628  0032  0086               	movwf	(6)	;volatile
+   629                           	line	151
+   630                           	
+   631  0033                     l2993:	
+   632                           ;Real Time Clock.c: 151: PORTD = data2segdisp[i];
+   633  0033  0828               	movf	(dispdata@i),w
+   634  0034  3E20               	addlw	_data2segdisp&0ffh
+   635  0035  0084               	movwf	fsr0
+   636  0036  1383               	bcf	status, 7	;select IRP bank0
+   637  0037  0800               	movf	indf,w
+   638  0038  0088               	movwf	(8)	;volatile
+   639                           	line	152
+   640                           	
+   641  0039                     l2995:	
+   642                           ;Real Time Clock.c: 152: _nop();
+   643  0039  0000               	nop
+   644                           	line	153
+   645                           	
+   646  003A                     l2997:	
+   647                           ;Real Time Clock.c: 153: _nop();
+   648  003A  0000               	nop
+   649                           	line	154
+   650                           	
+   651  003B                     l2999:	
+   652                           ;Real Time Clock.c: 154: _nop();
+   653  003B  0000               	nop
+   654                           	line	155
+   655                           	
+   656  003C                     l3001:	
+   657                           ;Real Time Clock.c: 155: _nop();
+   658  003C  0000               	nop
+   659                           	line	156
+   660                           	
+   661  003D                     l3003:	
+   662                           ;Real Time Clock.c: 156: _nop();
+   663  003D  0000               	nop
+   664                           	line	157
+   665                           	
+   666  003E                     l3005:	
+   667                           ;Real Time Clock.c: 157: _nop();
+   668  003E  0000               	nop
+   669                           	line	158
+   670                           	
+   671  003F                     l3007:	
+   672                           ;Real Time Clock.c: 158: _nop();
+   673  003F  0000               	nop
+   674                           	line	159
+   675                           	
+   676  0040                     l3009:	
+   677                           ;Real Time Clock.c: 159: PORTB = 0x00;
+   678  0040  1283               	bcf	status, 5	;RP0=0, select bank0
+   679  0041  1303               	bcf	status, 6	;RP1=0, select bank0
+   680  0042  0186               	clrf	(6)	;volatile
+   681                           	line	148
+   682                           	
+   683  0043                     l3011:	
+   684  0043  3001               	movlw	(01h)
+   685  0044  00A7               	movwf	(??_dispdata+0)+0
+   686  0045  0827               	movf	(??_dispdata+0)+0,w
+   687  0046  07A8               	addwf	(dispdata@i),f
+   688                           	
+   689  0047                     l3013:	
+   690  0047  3004               	movlw	(04h)
+   691  0048  0228               	subwf	(dispdata@i),w
+   692  0049  1C03               	skipc
+   693  004A  284C               	goto	u2711
+   694  004B  284D               	goto	u2710
+   695  004C                     u2711:
+   696  004C  2828               	goto	l2991
+   697  004D                     u2710:
+   698  004D  288E               	goto	l747
+   699                           	
+   700  004E                     l742:	
+   701                           	line	163
+   702                           ;Real Time Clock.c: 160: }
+   703                           ;Real Time Clock.c: 163: }
+   704  004E  288E               	goto	l747
+   705                           	line	165
+   706                           	
+   707  004F                     l740:	
+   708                           	
+   709  004F                     l3015:	
+   710                           ;Real Time Clock.c: 165: else if(display_toggle >= 20 && display_toggle <= 40)
+   711  004F  3014               	movlw	(014h)
+   712  0050  0270               	subwf	(_display_toggle),w
+   713  0051  1C03               	skipc
+   714  0052  2854               	goto	u2721
+   715  0053  2855               	goto	u2720
+   716  0054                     u2721:
+   717  0054  288E               	goto	l747
+   718  0055                     u2720:
+   719                           	
+   720  0055                     l3017:	
+   721  0055  3029               	movlw	(029h)
+   722  0056  0270               	subwf	(_display_toggle),w
+   723  0057  1803               	skipnc
+   724  0058  285A               	goto	u2731
+   725  0059  285B               	goto	u2730
+   726  005A                     u2731:
+   727  005A  288E               	goto	l747
+   728  005B                     u2730:
+   729                           	line	167
+   730                           	
+   731  005B                     l3019:	
+   732                           ;Real Time Clock.c: 166: {
+   733                           ;Real Time Clock.c: 167: display_toggle = 0;
+   734  005B  01F0               	clrf	(_display_toggle)
+   735                           	line	168
+   736                           	
+   737  005C                     l3021:	
+   738                           ;Real Time Clock.c: 168: data2segdisp[option] = 0x00;
+   739  005C  0872               	movf	(_option),w
+   740  005D  3E20               	addlw	_data2segdisp&0ffh
+   741  005E  0084               	movwf	fsr0
+   742  005F  1383               	bcf	status, 7	;select IRP bank0
+   743  0060  0180               	clrf	indf
+   744                           	line	170
+   745                           	
+   746  0061                     l3023:	
+   747                           ;Real Time Clock.c: 170: for(i = 0 ; i < 4 ; i++)
+   748  0061  01A8               	clrf	(dispdata@i)
+   749                           	
+   750  0062                     l3025:	
+   751  0062  3004               	movlw	(04h)
+   752  0063  0228               	subwf	(dispdata@i),w
+   753  0064  1C03               	skipc
+   754  0065  2867               	goto	u2741
+   755  0066  2868               	goto	u2740
+   756  0067                     u2741:
+   757  0067  286A               	goto	l3029
+   758  0068                     u2740:
+   759  0068  288E               	goto	l747
+   760                           	
+   761  0069                     l3027:	
+   762  0069  288E               	goto	l747
+   763                           	line	171
+   764                           	
+   765  006A                     l745:	
+   766                           	line	172
+   767                           	
+   768  006A                     l3029:	
+   769                           ;Real Time Clock.c: 171: {
+   770                           ;Real Time Clock.c: 172: PORTD = 0x00;
+   771  006A  0188               	clrf	(8)	;volatile
+   772                           	line	173
+   773                           	
+   774  006B                     l3031:	
+   775                           ;Real Time Clock.c: 173: _nop();
+   776  006B  0000               	nop
+   777                           	line	174
+   778                           	
+   779  006C                     l3033:	
+   780                           ;Real Time Clock.c: 174: _nop();
+   781  006C  0000               	nop
+   782                           	line	175
+   783                           	
+   784  006D                     l3035:	
+   785                           ;Real Time Clock.c: 175: _nop();
+   786  006D  0000               	nop
+   787                           	line	177
+   788                           	
+   789  006E                     l3037:	
+   790                           ;Real Time Clock.c: 177: PORTB = 1 << i;
+   791  006E  3001               	movlw	(01h)
+   792  006F  1283               	bcf	status, 5	;RP0=0, select bank0
+   793  0070  1303               	bcf	status, 6	;RP1=0, select bank0
+   794  0071  00A7               	movwf	(??_dispdata+0)+0
+   795  0072  0A28               	incf	(dispdata@i),w
+   796  0073  2876               	goto	u2754
+   797  0074                     u2755:
+   798  0074  1003               	clrc
+   799  0075  0DA7               	rlf	(??_dispdata+0)+0,f
+   800  0076                     u2754:
+   801  0076  3EFF               	addlw	-1
+   802  0077  1D03               	skipz
+   803  0078  2874               	goto	u2755
+   804  0079  0827               	movf	0+(??_dispdata+0)+0,w
+   805  007A  0086               	movwf	(6)	;volatile
+   806                           	line	178
+   807                           	
+   808  007B                     l3039:	
+   809                           ;Real Time Clock.c: 178: PORTD = data2segdisp[i];
+   810  007B  0828               	movf	(dispdata@i),w
+   811  007C  3E20               	addlw	_data2segdisp&0ffh
+   812  007D  0084               	movwf	fsr0
+   813  007E  1383               	bcf	status, 7	;select IRP bank0
+   814  007F  0800               	movf	indf,w
+   815  0080  0088               	movwf	(8)	;volatile
+   816                           	line	170
+   817                           	
+   818  0081                     l3041:	
+   819  0081  3001               	movlw	(01h)
+   820  0082  00A7               	movwf	(??_dispdata+0)+0
+   821  0083  0827               	movf	(??_dispdata+0)+0,w
+   822  0084  07A8               	addwf	(dispdata@i),f
+   823                           	
+   824  0085                     l3043:	
+   825  0085  3004               	movlw	(04h)
+   826  0086  0228               	subwf	(dispdata@i),w
+   827  0087  1C03               	skipc
+   828  0088  288A               	goto	u2761
+   829  0089  288B               	goto	u2760
+   830  008A                     u2761:
+   831  008A  286A               	goto	l3029
+   832  008B                     u2760:
+   833  008B  288E               	goto	l747
+   834                           	
+   835  008C                     l746:	
+   836  008C  288E               	goto	l747
+   837                           	line	180
+   838                           	
+   839  008D                     l744:	
+   840  008D  288E               	goto	l747
+   841                           	line	181
+   842                           	
+   843  008E                     l743:	
+   844                           	
+   845  008E                     l747:	
+   846  008E  0008               	return
+   847                           	opt stack 0
+   848                           GLOBAL	__end_of_dispdata
+   849  008F                     	__end_of_dispdata:
+   850 ;; =============== function _dispdata ends ============
+   851                           
+   852                           	signat	_dispdata,88
+   853                           	global	_UpdateData
+   854                           psect	text221,local,class=CODE,delta=2
+   855                           global __ptext221
+   856  00E2                     __ptext221:
+   857                           
+   858 ;; *************** function _UpdateData *****************
+   859 ;; Defined at:
+   860 ;;		line 185 in file "D:\embedded projects\PIC_PROJECTS\Real Time Clock\Real Time Clock.c"
+   861 ;; Parameters:    Size  Location     Type
+   862 ;;  rec_data        1    wreg     PTR unsigned int 
+   863 ;;		 -> second(2), 
+   864 ;; Auto vars:     Size  Location     Type
+   865 ;;  rec_data        1    1[BANK0 ] PTR unsigned int 
+   866 ;;		 -> second(2), 
+   867 ;;  i               1    2[BANK0 ] unsigned char 
+   868 ;; Return value:  Size  Location     Type
+   869 ;;		None               void
+   870 ;; Registers used:
+   871 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath
+   872 ;; Tracked objects:
+   873 ;;		On entry : 0/0
+   874 ;;		On exit  : 0/0
+   875 ;;		Unchanged: 0/0
+   876 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   877 ;;      Params:         0       0       0       0       0
+   878 ;;      Locals:         0       2       0       0       0
+   879 ;;      Temps:          0       1       0       0       0
+   880 ;;      Totals:         0       3       0       0       0
+   881 ;;Total ram usage:        3 bytes
+   882 ;; Hardware stack levels used:    2
+   883 ;; Hardware stack levels required when called:    1
+   884 ;; This function calls:
+   885 ;;		Nothing
+   886 ;; This function is called by:
+   887 ;;		_main
+   888 ;; This function uses a non-reentrant model
+   889 ;;
+   890                           psect	text221
+   891                           	file	"D:\embedded projects\PIC_PROJECTS\Real Time Clock\Real Time Clock.c"
+   892                           	line	185
+   893                           	global	__size_of_UpdateData
+   894  002F                     	__size_of_UpdateData	equ	__end_of_UpdateData-_UpdateData
+   895                           	
+   896  00E2                     _UpdateData:	
+   897                           	opt	stack 5
+   898                           ; Regs used in _UpdateData: [wreg-fsr0h+status,2+status,0+pclath]
+   899                           ;UpdateData@rec_data stored from wreg
+   900  00E2  1283               	bcf	status, 5	;RP0=0, select bank0
+   901  00E3  1303               	bcf	status, 6	;RP1=0, select bank0
+   902  00E4  00A8               	movwf	(UpdateData@rec_data)
+   903                           	line	186
+   904                           	
+   905  00E5                     l2967:	
+   906                           ;Real Time Clock.c: 186: UPDATEDATA = 0;
+   907  00E5  11FA               	bcf	(_UPDATEDATA/8),(_UPDATEDATA)&7
+   908                           	line	187
+   909                           ;Real Time Clock.c: 187: U1 i = 0;
+   910  00E6  01A9               	clrf	(UpdateData@i)
+   911                           	line	189
+   912                           ;Real Time Clock.c: 189: for(i = 0 ; i < 4 ; i++)
+   913  00E7  01A9               	clrf	(UpdateData@i)
+   914                           	
+   915  00E8                     l2969:	
+   916  00E8  3004               	movlw	(04h)
+   917  00E9  0229               	subwf	(UpdateData@i),w
+   918  00EA  1C03               	skipc
+   919  00EB  28ED               	goto	u2661
+   920  00EC  28EE               	goto	u2660
+   921  00ED                     u2661:
+   922  00ED  28F0               	goto	l2973
+   923  00EE                     u2660:
+   924  00EE  2910               	goto	l752
+   925                           	
+   926  00EF                     l2971:	
+   927  00EF  2910               	goto	l752
+   928                           	line	190
+   929                           	
+   930  00F0                     l750:	
+   931                           	line	191
+   932                           	
+   933  00F0                     l2973:	
+   934                           ;Real Time Clock.c: 190: {
+   935                           ;Real Time Clock.c: 191: data2segdisp[i] = arr[*rec_data];
+   936  00F0  0828               	movf	(UpdateData@rec_data),w
+   937  00F1  0084               	movwf	fsr0
+   938  00F2  1383               	bcf	status, 7	;select IRP bank0
+   939  00F3  0800               	movf	indf,w
+   940  00F4  3E01               	addlw	low((_arr-__stringbase))
+   941  00F5  0084               	movwf	fsr0
+   942  00F6  120A  118A  2164   	fcall	stringdir
+              120A  118A         
+   943  00FB  00A7               	movwf	(??_UpdateData+0)+0
+   944  00FC  0829               	movf	(UpdateData@i),w
+   945  00FD  3E20               	addlw	_data2segdisp&0ffh
+   946  00FE  0084               	movwf	fsr0
+   947  00FF  0827               	movf	(??_UpdateData+0)+0,w
+   948  0100  0080               	movwf	indf
+   949                           	line	192
+   950                           	
+   951  0101                     l2975:	
+   952                           ;Real Time Clock.c: 192: rec_data++;
+   953  0101  3002               	movlw	(02h)
+   954  0102  00A7               	movwf	(??_UpdateData+0)+0
+   955  0103  0827               	movf	(??_UpdateData+0)+0,w
+   956  0104  07A8               	addwf	(UpdateData@rec_data),f
+   957                           	line	189
+   958                           	
+   959  0105                     l2977:	
+   960  0105  3001               	movlw	(01h)
+   961  0106  00A7               	movwf	(??_UpdateData+0)+0
+   962  0107  0827               	movf	(??_UpdateData+0)+0,w
+   963  0108  07A9               	addwf	(UpdateData@i),f
+   964                           	
+   965  0109                     l2979:	
+   966  0109  3004               	movlw	(04h)
+   967  010A  0229               	subwf	(UpdateData@i),w
+   968  010B  1C03               	skipc
+   969  010C  290E               	goto	u2671
+   970  010D  290F               	goto	u2670
+   971  010E                     u2671:
+   972  010E  28F0               	goto	l2973
+   973  010F                     u2670:
+   974  010F  2910               	goto	l752
+   975                           	
+   976  0110                     l751:	
+   977                           	line	195
+   978                           	
+   979  0110                     l752:	
+   980  0110  0008               	return
+   981                           	opt stack 0
+   982                           GLOBAL	__end_of_UpdateData
+   983  0111                     	__end_of_UpdateData:
+   984 ;; =============== function _UpdateData ends ============
+   985                           
+   986                           	signat	_UpdateData,4216
+   987                           	global	_Initializations
+   988                           psect	text222,local,class=CODE,delta=2
+   989                           global __ptext222
+   990  0136                     __ptext222:
+   991                           
+   992 ;; *************** function _Initializations *****************
+   993 ;; Defined at:
+   994 ;;		line 93 in file "D:\embedded projects\PIC_PROJECTS\Real Time Clock\Real Time Clock.c"
+   995 ;; Parameters:    Size  Location     Type
+   996 ;;		None
+   997 ;; Auto vars:     Size  Location     Type
+   998 ;;		None
+   999 ;; Return value:  Size  Location     Type
+  1000 ;;		None               void
+  1001 ;; Registers used:
+  1002 ;;		wreg, status,2
+  1003 ;; Tracked objects:
+  1004 ;;		On entry : 0/0
+  1005 ;;		On exit  : 0/0
+  1006 ;;		Unchanged: 0/0
+  1007 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1008 ;;      Params:         0       0       0       0       0
+  1009 ;;      Locals:         0       0       0       0       0
+  1010 ;;      Temps:          0       0       0       0       0
+  1011 ;;      Totals:         0       0       0       0       0
+  1012 ;;Total ram usage:        0 bytes
+  1013 ;; Hardware stack levels used:    1
+  1014 ;; Hardware stack levels required when called:    1
+  1015 ;; This function calls:
+  1016 ;;		Nothing
+  1017 ;; This function is called by:
+  1018 ;;		_main
+  1019 ;; This function uses a non-reentrant model
+  1020 ;;
+  1021                           psect	text222
+  1022                           	file	"D:\embedded projects\PIC_PROJECTS\Real Time Clock\Real Time Clock.c"
+  1023                           	line	93
+  1024                           	global	__size_of_Initializations
+  1025  001D                     	__size_of_Initializations	equ	__end_of_Initializations-_Initializations
+  1026                           	
+  1027  0136                     _Initializations:	
+  1028                           	opt	stack 6
+  1029                           ; Regs used in _Initializations: [wreg+status,2]
+  1030                           	line	94
+  1031                           	
+  1032  0136                     l2945:	
+  1033                           ;Real Time Clock.c: 94: TRISD = 0X00;
+  1034  0136  1683               	bsf	status, 5	;RP0=1, select bank1
+  1035  0137  1303               	bcf	status, 6	;RP1=0, select bank1
+  1036  0138  0188               	clrf	(136)^080h	;volatile
+  1037                           	line	95
+  1038                           ;Real Time Clock.c: 95: TRISB = 0x00;
+  1039  0139  0186               	clrf	(134)^080h	;volatile
+  1040                           	line	96
+  1041                           	
+  1042  013A                     l2947:	
+  1043                           ;Real Time Clock.c: 96: TRISC0 = 1;
+  1044  013A  1407               	bsf	(1080/8)^080h,(1080)&7
+  1045                           	line	98
+  1046                           	
+  1047  013B                     l2949:	
+  1048                           ;Real Time Clock.c: 98: TRISE0 = 0;
+  1049  013B  1009               	bcf	(1096/8)^080h,(1096)&7
+  1050                           	line	99
+  1051                           	
+  1052  013C                     l2951:	
+  1053                           ;Real Time Clock.c: 99: RE0 = 0;
+  1054  013C  1283               	bcf	status, 5	;RP0=0, select bank0
+  1055  013D  1303               	bcf	status, 6	;RP1=0, select bank0
+  1056  013E  1009               	bcf	(72/8),(72)&7
+  1057                           	line	101
+  1058                           ;Real Time Clock.c: 101: PORTD = 0X00;
+  1059  013F  0188               	clrf	(8)	;volatile
+  1060                           	line	102
+  1061                           	
+  1062  0140                     l2953:	
+  1063                           ;Real Time Clock.c: 102: PORTB = 0xff;
+  1064  0140  30FF               	movlw	(0FFh)
+  1065  0141  0086               	movwf	(6)	;volatile
+  1066                           	line	104
+  1067                           	
+  1068  0142                     l2955:	
+  1069                           ;Real Time Clock.c: 104: T1CON = 0x20;
+  1070  0142  3020               	movlw	(020h)
+  1071  0143  0090               	movwf	(16)	;volatile
+  1072                           	line	105
+  1073                           ;Real Time Clock.c: 105: TMR1H = 0; TMR1L = 0;
+  1074  0144  018F               	clrf	(15)	;volatile
+  1075  0145  018E               	clrf	(14)	;volatile
+  1076                           	line	107
+  1077                           	
+  1078  0146                     l2957:	
+  1079                           ;Real Time Clock.c: 107: CCP1CON = 0x0B;
+  1080  0146  300B               	movlw	(0Bh)
+  1081  0147  0097               	movwf	(23)	;volatile
+  1082                           	line	108
+  1083                           	
+  1084  0148                     l2959:	
+  1085                           ;Real Time Clock.c: 108: CCP1IE = 1; CCP1IF = 0;
+  1086  0148  1683               	bsf	status, 5	;RP0=1, select bank1
+  1087  0149  1303               	bcf	status, 6	;RP1=0, select bank1
+  1088  014A  150C               	bsf	(1122/8)^080h,(1122)&7
+  1089                           	
+  1090  014B                     l2961:	
+  1091  014B  1283               	bcf	status, 5	;RP0=0, select bank0
+  1092  014C  1303               	bcf	status, 6	;RP1=0, select bank0
+  1093  014D  110C               	bcf	(98/8),(98)&7
+  1094                           	line	109
+  1095                           	
+  1096  014E                     l2963:	
+  1097                           ;Real Time Clock.c: 109: CCPR1H = 0x61; CCPR1L = 0xA8;
+  1098  014E  3061               	movlw	(061h)
+  1099  014F  0096               	movwf	(22)	;volatile
+  1100                           	
+  1101  0150                     l2965:	
+  1102  0150  30A8               	movlw	(0A8h)
+  1103  0151  0095               	movwf	(21)	;volatile
+  1104                           	line	110
+  1105                           	
+  1106  0152                     l728:	
+  1107  0152  0008               	return
+  1108                           	opt stack 0
+  1109                           GLOBAL	__end_of_Initializations
+  1110  0153                     	__end_of_Initializations:
+  1111 ;; =============== function _Initializations ends ============
+  1112                           
+  1113                           	signat	_Initializations,88
+  1114                           	global	_ISR
+  1115                           psect	text223,local,class=CODE,delta=2
+  1116                           global __ptext223
+  1117  008F                     __ptext223:
+  1118                           
+  1119 ;; *************** function _ISR *****************
+  1120 ;; Defined at:
+  1121 ;;		line 35 in file "D:\embedded projects\PIC_PROJECTS\Real Time Clock\Real Time Clock.c"
+  1122 ;; Parameters:    Size  Location     Type
+  1123 ;;		None
+  1124 ;; Auto vars:     Size  Location     Type
+  1125 ;;		None
+  1126 ;; Return value:  Size  Location     Type
+  1127 ;;                  2  716[COMMON] int 
+  1128 ;; Registers used:
+  1129 ;;		wreg, status,2, status,0
+  1130 ;; Tracked objects:
+  1131 ;;		On entry : 0/0
+  1132 ;;		On exit  : 0/0
+  1133 ;;		Unchanged: 0/0
+  1134 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1135 ;;      Params:         0       0       0       0       0
+  1136 ;;      Locals:         0       0       0       0       0
+  1137 ;;      Temps:          5       0       0       0       0
+  1138 ;;      Totals:         5       0       0       0       0
+  1139 ;;Total ram usage:        5 bytes
+  1140 ;; Hardware stack levels used:    1
+  1141 ;; This function calls:
+  1142 ;;		Nothing
+  1143 ;; This function is called by:
+  1144 ;;		Interrupt level 1
+  1145 ;; This function uses a non-reentrant model
+  1146 ;;
+  1147                           psect	text223
+  1148                           	file	"D:\embedded projects\PIC_PROJECTS\Real Time Clock\Real Time Clock.c"
+  1149                           	line	35
+  1150                           	global	__size_of_ISR
+  1151  0053                     	__size_of_ISR	equ	__end_of_ISR-_ISR
+  1152                           	
+  1153  008F                     _ISR:	
+  1154                           	opt	stack 5
+  1155                           ; Regs used in _ISR: [wreg+status,2+status,0]
+  1156                           psect	intentry,class=CODE,delta=2
+  1157                           global __pintentry
+  1158  0004                     __pintentry:
+  1159                           global interrupt_function
+  1160  0004                     interrupt_function:
+  1161                           	global saved_w
+  1162  007E                     	saved_w	set	btemp+0
+  1163  0004  00FE               	movwf	saved_w
+  1164  0005  0E03               	swapf	status,w
+  1165  0006  00F6               	movwf	(??_ISR+1)
+  1166  0007  0804               	movf	fsr0,w
+  1167  0008  00F7               	movwf	(??_ISR+2)
+  1168  0009  080A               	movf	pclath,w
+  1169  000A  00F8               	movwf	(??_ISR+3)
+  1170  000B  1283               	bcf	status, 5	;RP0=0, select bank0
+  1171  000C  1303               	bcf	status, 6	;RP1=0, select bank0
+  1172  000D  087F               	movf	btemp+1,w
+  1173  000E  00F9               	movwf	(??_ISR+4)
+  1174  000F  120A  118A  288F   	ljmp	_ISR
+  1175                           psect	text223
+  1176                           	line	36
+  1177                           	
+  1178  008F                     i1l2801:	
+  1179                           ;Real Time Clock.c: 36: if(0 != CCP1IF)
+  1180  008F  1D0C               	btfss	(98/8),(98)&7
+  1181  0090  2892               	goto	u244_21
+  1182  0091  2893               	goto	u244_20
+  1183  0092                     u244_21:
+  1184  0092  28D7               	goto	i1l725
+  1185  0093                     u244_20:
+  1186                           	line	38
+  1187                           	
+  1188  0093                     i1l2803:	
+  1189                           ;Real Time Clock.c: 37: {
+  1190                           ;Real Time Clock.c: 38: RB4 = ~RB4;
+  1191  0093  3010               	movlw	1<<((52)&7)
+  1192  0094  0686               	xorwf	((52)/8),f
+  1193                           	line	39
+  1194                           	
+  1195  0095                     i1l2805:	
+  1196                           ;Real Time Clock.c: 39: timecounter++;
+  1197  0095  3001               	movlw	(01h)
+  1198  0096  00F5               	movwf	(??_ISR+0)+0
+  1199  0097  0875               	movf	(??_ISR+0)+0,w
+  1200  0098  07F4               	addwf	(_timecounter),f
+  1201                           	line	40
+  1202                           	
+  1203  0099                     i1l2807:	
+  1204                           ;Real Time Clock.c: 40: ACCESSDISP = 1;
+  1205  0099  147A               	bsf	(_ACCESSDISP/8),(_ACCESSDISP)&7
+  1206                           	line	41
+  1207                           	
+  1208  009A                     i1l2809:	
+  1209                           ;Real Time Clock.c: 41: if(timecounter >= 40)
+  1210  009A  3028               	movlw	(028h)
+  1211  009B  0274               	subwf	(_timecounter),w
+  1212  009C  1C03               	skipc
+  1213  009D  289F               	goto	u245_21
+  1214  009E  28A0               	goto	u245_20
+  1215  009F                     u245_21:
+  1216  009F  28D5               	goto	i1l718
+  1217  00A0                     u245_20:
+  1218                           	line	43
+  1219                           	
+  1220  00A0                     i1l2811:	
+  1221                           ;Real Time Clock.c: 42: {
+  1222                           ;Real Time Clock.c: 43: timecounter = 0;
+  1223  00A0  01F4               	clrf	(_timecounter)
+  1224                           	line	44
+  1225                           ;Real Time Clock.c: 44: UPDATEDATA = 1;
+  1226  00A1  15FA               	bsf	(_UPDATEDATA/8),(_UPDATEDATA)&7
+  1227                           	line	45
+  1228                           ;Real Time Clock.c: 45: if(0 != RC0 && 1 != MODIFYDATA)
+  1229  00A2  1C07               	btfss	(56/8),(56)&7
+  1230  00A3  28A5               	goto	u246_21
+  1231  00A4  28A6               	goto	u246_20
+  1232  00A5                     u246_21:
+  1233  00A5  28BB               	goto	i1l719
+  1234  00A6                     u246_20:
+  1235                           	
+  1236  00A6                     i1l2813:	
+  1237  00A6  197A               	btfsc	(_MODIFYDATA/8),(_MODIFYDATA)&7
+  1238  00A7  28A9               	goto	u247_21
+  1239  00A8  28AA               	goto	u247_20
+  1240  00A9                     u247_21:
+  1241  00A9  28BB               	goto	i1l719
+  1242  00AA                     u247_20:
+  1243                           	line	47
+  1244                           	
+  1245  00AA                     i1l2815:	
+  1246                           ;Real Time Clock.c: 46: {
+  1247                           ;Real Time Clock.c: 47: switch_press_time++;
+  1248  00AA  3001               	movlw	(01h)
+  1249  00AB  00F5               	movwf	(??_ISR+0)+0
+  1250  00AC  0875               	movf	(??_ISR+0)+0,w
+  1251  00AD  07F3               	addwf	(_switch_press_time),f
+  1252                           	line	48
+  1253                           	
+  1254  00AE                     i1l2817:	
+  1255                           ;Real Time Clock.c: 48: if((1 != MODIFYDATA) && switch_press_time >= 5)
+  1256  00AE  197A               	btfsc	(_MODIFYDATA/8),(_MODIFYDATA)&7
+  1257  00AF  28B1               	goto	u248_21
+  1258  00B0  28B2               	goto	u248_20
+  1259  00B1                     u248_21:
+  1260  00B1  28D5               	goto	i1l718
+  1261  00B2                     u248_20:
+  1262                           	
+  1263  00B2                     i1l2819:	
+  1264  00B2  3005               	movlw	(05h)
+  1265  00B3  0273               	subwf	(_switch_press_time),w
+  1266  00B4  1C03               	skipc
+  1267  00B5  28B7               	goto	u249_21
+  1268  00B6  28B8               	goto	u249_20
+  1269  00B7                     u249_21:
+  1270  00B7  28D5               	goto	i1l718
+  1271  00B8                     u249_20:
+  1272                           	line	50
+  1273                           	
+  1274  00B8                     i1l2821:	
+  1275                           ;Real Time Clock.c: 49: {
+  1276                           ;Real Time Clock.c: 50: MODIFYDATA = 1;
+  1277  00B8  157A               	bsf	(_MODIFYDATA/8),(_MODIFYDATA)&7
+  1278  00B9  28D5               	goto	i1l718
+  1279                           	line	51
+  1280                           	
+  1281  00BA                     i1l720:	
+  1282                           	line	52
+  1283                           ;Real Time Clock.c: 51: }
+  1284                           ;Real Time Clock.c: 52: }
+  1285  00BA  28D5               	goto	i1l718
+  1286                           	line	66
+  1287                           	
+  1288  00BB                     i1l719:	
+  1289                           ;Real Time Clock.c: 66: else if((1 != RC0) && (0 != MODIFYDATA))
+  1290  00BB  1807               	btfsc	(56/8),(56)&7
+  1291  00BC  28BE               	goto	u250_21
+  1292  00BD  28BF               	goto	u250_20
+  1293  00BE                     u250_21:
+  1294  00BE  28D0               	goto	i1l722
+  1295  00BF                     u250_20:
+  1296                           	
+  1297  00BF                     i1l2823:	
+  1298  00BF  1D7A               	btfss	(_MODIFYDATA/8),(_MODIFYDATA)&7
+  1299  00C0  28C2               	goto	u251_21
+  1300  00C1  28C3               	goto	u251_20
+  1301  00C2                     u251_21:
+  1302  00C2  28D0               	goto	i1l722
+  1303  00C3                     u251_20:
+  1304                           	line	68
+  1305                           	
+  1306  00C3                     i1l2825:	
+  1307                           ;Real Time Clock.c: 67: {
+  1308                           ;Real Time Clock.c: 68: exit_modification_time++;
+  1309  00C3  3001               	movlw	(01h)
+  1310  00C4  00F5               	movwf	(??_ISR+0)+0
+  1311  00C5  0875               	movf	(??_ISR+0)+0,w
+  1312  00C6  07F1               	addwf	(_exit_modification_time),f
+  1313                           	line	69
+  1314                           	
+  1315  00C7                     i1l2827:	
+  1316                           ;Real Time Clock.c: 69: if(exit_modification_time >= 5)
+  1317  00C7  3005               	movlw	(05h)
+  1318  00C8  0271               	subwf	(_exit_modification_time),w
+  1319  00C9  1C03               	skipc
+  1320  00CA  28CC               	goto	u252_21
+  1321  00CB  28CD               	goto	u252_20
+  1322  00CC                     u252_21:
+  1323  00CC  28D5               	goto	i1l718
+  1324  00CD                     u252_20:
+  1325                           	line	71
+  1326                           	
+  1327  00CD                     i1l2829:	
+  1328                           ;Real Time Clock.c: 70: {
+  1329                           ;Real Time Clock.c: 71: MODIFYDATA = 0;
+  1330  00CD  117A               	bcf	(_MODIFYDATA/8),(_MODIFYDATA)&7
+  1331  00CE  28D5               	goto	i1l718
+  1332                           	line	72
+  1333                           	
+  1334  00CF                     i1l723:	
+  1335                           	line	73
+  1336                           ;Real Time Clock.c: 72: }
+  1337                           ;Real Time Clock.c: 73: }
+  1338  00CF  28D5               	goto	i1l718
+  1339                           	line	76
+  1340                           	
+  1341  00D0                     i1l722:	
+  1342                           	line	78
+  1343                           ;Real Time Clock.c: 76: else
+  1344                           ;Real Time Clock.c: 77: {
+  1345                           ;Real Time Clock.c: 78: switch_press_time = 0;
+  1346  00D0  01F3               	clrf	(_switch_press_time)
+  1347                           	line	79
+  1348                           ;Real Time Clock.c: 79: option_select_time = 0;
+  1349  00D1  01A4               	clrf	(_option_select_time)
+  1350                           	line	80
+  1351                           ;Real Time Clock.c: 80: exit_modification_time = 0;
+  1352  00D2  01F1               	clrf	(_exit_modification_time)
+  1353  00D3  28D5               	goto	i1l718
+  1354                           	line	81
+  1355                           	
+  1356  00D4                     i1l724:	
+  1357  00D4  28D5               	goto	i1l718
+  1358                           	
+  1359  00D5                     i1l721:	
+  1360                           	line	83
+  1361                           	
+  1362  00D5                     i1l718:	
+  1363                           	line	85
+  1364                           ;Real Time Clock.c: 81: }
+  1365                           ;Real Time Clock.c: 83: }
+  1366                           ;Real Time Clock.c: 85: CCP1IF = 0;
+  1367  00D5  110C               	bcf	(98/8),(98)&7
+  1368  00D6  28D7               	goto	i1l725
+  1369                           	line	86
+  1370                           	
+  1371  00D7                     i1l717:	
+  1372                           	line	90
+  1373                           	
+  1374  00D7                     i1l725:	
+  1375  00D7  0879               	movf	(??_ISR+4),w
+  1376  00D8  00FF               	movwf	btemp+1
+  1377  00D9  0878               	movf	(??_ISR+3),w
+  1378  00DA  008A               	movwf	pclath
+  1379  00DB  0877               	movf	(??_ISR+2),w
+  1380  00DC  0084               	movwf	fsr0
+  1381  00DD  0E76               	swapf	(??_ISR+1)^0FFFFFF80h,w
+  1382  00DE  0083               	movwf	status
+  1383  00DF  0EFE               	swapf	saved_w,f
+  1384  00E0  0E7E               	swapf	saved_w,w
+  1385  00E1  0009               	retfie
+  1386                           	opt stack 0
+  1387                           GLOBAL	__end_of_ISR
+  1388  00E2                     	__end_of_ISR:
+  1389 ;; =============== function _ISR ends ============
+  1390                           
+  1391                           	signat	_ISR,90
+  1392                           psect	text224,local,class=CODE,delta=2
+  1393                           global __ptext224
+  1394  0000                     __ptext224:
+  1395                           	global	btemp
+  1396  007E                     	btemp set 07Eh
+  1397                           
+  1398                           	DABS	1,126,2	;btemp
+  1399                           	global	wtemp0
+  1400  007E                     	wtemp0 set btemp
+
+
+HI-TECH Software PICC Macro Assembler V9.83 build 10920 
+Symbol Table                                                                                   Sun Dec 18 08:52:34 2016
+
+                       pc 0002                        _RD 0C60                        _WR 0C61  
+                      fsr 0004                       l731 0119                       l740 004F  
+                     l732 0126                       l741 0028                       l733 0126  
+                     l750 00F0                       l742 004E                       l734 0131  
+                     l751 0110                       l743 008E                       l735 0132  
+                     l728 0152                       l752 0110                       l744 008D  
+                     l736 0133                       l745 006A                       l737 0133  
+                     l746 008C                       l747 008E                       _GIE 005F  
+                     _RC0 0038                       _RB4 0034                       _RE0 0048  
+                     _ISR 008F                       _arr 016A                       fsr0 0004  
+                     indf 0000                      ?_ISR 0075                      l3001 003C  
+                    l3011 0043                      l3003 003D                      l3021 005C  
+                    l3013 0047                      l3005 003E                      l3031 006B  
+                    l3023 0061                      l3007 003F                      l3015 004F  
+                    l3041 0081                      l3033 006C                      l3025 0062  
+                    l3017 0055                      l3009 0040                      l3043 0085  
+                    l3035 006D                      l3027 0069                      l3019 005B  
+                    l3051 0119                      l3037 006E                      l3029 006A  
+                    l3053 011C                      l3045 0111                      l3039 007B  
+                    l3055 0120                      l3047 0116                      l3057 012A  
+                    l3049 0117                      l2951 013C                      l2961 014B  
+                    l2953 0140                      l2945 0136                      l2963 014E  
+                    l2955 0142                      l2947 013A                      l2971 00EF  
+                    l2965 0150                      l2957 0146                      l2949 013B  
+                    l2973 00F0                      l2981 0015                      l2959 0148  
+                    l2975 0101                      l2967 00E5                      l2991 0028  
+                    l2983 0019                      l2977 0105                      l2969 00E8  
+                    l2993 0033                      l2985 001F                      l2979 0109  
+                    l2995 0039                      l2987 0020                      l2997 003A  
+                    l2989 0027                      l2999 003B                      u2710 004D  
+                    u2711 004C                      u2720 0055                      u2704 002E  
+                    u2721 0054                      u2705 002C                      u2730 005B  
+                    u2731 005A                      u2660 00EE                      u2740 0068  
+                    u2661 00ED                      u2741 0067                      u2670 010F  
+                    u2671 010E                      u2760 008B                      u2680 001F  
+                    u2761 008A                      u2681 001E                      u2754 0076  
+                    u2690 0026                      u2770 0120                      u2755 0074  
+                    u2691 0025                      u2771 011F                      _PEIE 005E  
+                    u2780 012A                      u2781 0129                      _WREN 0C62  
+                    _main 0111                      btemp 007E                      start 0012  
+                   ??_ISR 0075                     ?_main 0075                     _EEADR 010D  
+                   _CARRY 0018                     _T1CON 0010                     i1l720 00BA  
+                   i1l721 00D5                     i1l722 00D0                     i1l723 00CF  
+                   i1l724 00D4                     i1l717 00D7                     i1l725 00D7  
+                   i1l718 00D5                     i1l719 00BB                     _TMR1H 000F  
+                   _TMR1L 000E                     _PORTB 0006                     _PORTD 0008  
+                   _TRISB 0086                     _TRISD 0088            __pbitbssCOMMON 03D0  
+                   pclath 000A                     status 0003                     wtemp0 007E  
+            __end_of_main 0136                    ??_main 002A                    _CCP1IE 0462  
+                  _CCP1IF 0062                    _EEDATA 010C                    _CCPR1H 0016  
+                  _CCPR1L 0015                    _EECON1 018C                    _EECON2 018D  
+                  i1l2801 008F                    i1l2811 00A0                    i1l2803 0093  
+                  i1l2821 00B8                    i1l2813 00A6                    i1l2805 0095  
+                  i1l2823 00BF                    i1l2815 00AA                    i1l2807 0099  
+                  i1l2825 00C3                    i1l2817 00AE                    i1l2809 009A  
+                  i1l2827 00C7                    i1l2819 00B2                    i1l2829 00CD  
+                  u250_20 00BF                    u250_21 00BE                    u251_20 00C3  
+                  u251_21 00C2                    u252_20 00CD                    u244_20 0093  
+                  u252_21 00CC                    u244_21 0092                    u245_20 00A0  
+                  u245_21 009F                    u246_20 00A6                    u246_21 00A5  
+                  u247_20 00AA                    u247_21 00A9                    u248_20 00B2  
+                  u248_21 00B1                    u249_20 00B8                    u249_21 00B7  
+      _option_select_time 0024                    _TMR1ON 0080                    _TRISC0 0438  
+                  _TRISE0 0448              _data2segdisp 0020          __end_of_dispdata 008F  
+                  _second 0025                    _option 0072                _UpdateData 00E2  
+                  saved_w 007E            __pcstackCOMMON 0075  __size_of_Initializations 001D  
+              __pbssBANK0 0020    _exit_modification_time 0071                __pmaintext 0111  
+              __pintentry 0004                   _CCP1CON 0017               ?_UpdateData 0075  
+               ?_dispdata 0075        UpdateData@rec_data 0028              __size_of_ISR 0053  
+               _LCD_BLINK 03D1         ??_Initializations 0027                ??_dispdata 0027  
+    end_of_initialization 0160       __size_of_UpdateData 002F               UpdateData@i 0029  
+     start_initialization 0153               __end_of_ISR 00E2              ??_UpdateData 0027  
+             __pbssCOMMON 0070             __pcstackBANK0 0027         __size_of_dispdata 007A  
+      __end_of_UpdateData 0111                 __ptext220 0015                 __ptext221 00E2  
+               __ptext222 0136                 __ptext223 008F                 __ptext224 0000  
+         _Initializations 0136                 __pstrings 0164         interrupt_function 0004  
+              _ACCESSDISP 03D0         _switch_press_time 0073               __stringbase 0169  
+               dispdata@i 0028   __end_of_Initializations 0153                  _dispdata 0015  
+           __size_of_main 0025                _MODIFYDATA 03D2                  intlevel1 0000  
+               stringcode 0164          ?_Initializations 0075                _UPDATEDATA 03D3  
+                stringdir 0164                  stringtab 0164               _timecounter 0074  
+          _display_toggle 0070  
